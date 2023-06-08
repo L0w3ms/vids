@@ -1,0 +1,50 @@
+
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: rgb(0,0,0);
+    color: white;
+    font-size: 120%;
+    margin: 0!important;
+    /*padding-top: 0px;
+    display: flex;
+    align-items: left;
+    justify-content: left;*/
+} 
+
+td:nth-child(2) {
+    color: white;
+}
+td:nth-child(4) {
+    color: white;
+}
+td:nth-child(5) {
+    color: #00ff00;
+}
+td:nth-child(6) {
+    color: white;
+}
+
+te{
+    font-size: 30px;
+    color: #ffc308;
+    
+
+}
+
+td {
+    color: #ffc308;
+    border-bottom: 1px solid white;
+}
+
+th {
+    background-color: #ffc308;
+    color: black;
+}
+
+td.highlight {
+    font-weight: bold;
+    color: blue;
+}
+
+

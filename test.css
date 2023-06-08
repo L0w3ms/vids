@@ -1,0 +1,33 @@
+.container {
+    width: 100%;
+    height: 100vh;
+  }
+  
+  .toppane {
+    font-family: 'Open Sans', sans-serif;
+    width: 100%;
+    height: 100px;
+    background-color: rgb(0,0,0);
+    font-size: 70px;
+    color: #ffc308;
+  }
+  
+  .leftpane {
+    width: 50%;
+    height: 100vh;
+    background-color: rosybrown;
+  }
+  
+  .rightpane {
+    width: 50%;
+    height: 100vh;
+    background-color: yellow;
+  }
+  
+  body {
+    margin: 0!important;
+  }
+  
+  .d-flex {
+    display: flex;
+  }
