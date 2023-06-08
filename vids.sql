@@ -1,0 +1,228 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Jun 09, 2023 at 01:46 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `vids`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `airlines`
+--
+
+CREATE TABLE `airlines` (
+  `airlinecode` varchar(2) NOT NULL,
+  `airlinename` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `airlines`
+--
+
+INSERT INTO `airlines` (`airlinecode`, `airlinename`) VALUES
+('ZZ', 'Test Airline');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `airports`
+--
+
+CREATE TABLE `airports` (
+  `airportcode` varchar(4) NOT NULL,
+  `airportname` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `airports`
+--
+
+INSERT INTO `airports` (`airportcode`, `airportname`) VALUES
+('ZZZ', 'Test Airport');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `arrivals`
+--
+
+CREATE TABLE `arrivals` (
+  `airlinecode` varchar(2) NOT NULL,
+  `flightno` int(4) NOT NULL,
+  `arrives` date NOT NULL,
+  `arrivestime` time NOT NULL,
+  `airport` varchar(4) NOT NULL,
+  `registration` varchar(7) DEFAULT NULL,
+  `slottime` time DEFAULT NULL,
+  `eta` time NOT NULL,
+  `bay` varchar(5) DEFAULT NULL,
+  `gate` varchar(5) DEFAULT NULL,
+  `aircraft` varchar(8) DEFAULT NULL,
+  `belt` varchar(5) DEFAULT NULL,
+  `type` varchar(1) NOT NULL,
+  `status` text NOT NULL,
+  `staffmsg` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `departures`
+--
+
+CREATE TABLE `departures` (
+  `airlinecode` varchar(2) NOT NULL,
+  `flightno` int(4) NOT NULL,
+  `departs` date NOT NULL,
+  `departstime` time NOT NULL,
+  `airport` varchar(4) NOT NULL,
+  `registration` varchar(8) DEFAULT NULL,
+  `slottime` time DEFAULT NULL,
+  `edt` time NOT NULL,
+  `bay` varchar(5) DEFAULT NULL,
+  `gate` varchar(5) DEFAULT NULL,
+  `aircraft` varchar(8) DEFAULT NULL,
+  `checkin` text DEFAULT NULL,
+  `status` text DEFAULT NULL,
+  `type` varchar(1) DEFAULT NULL,
+  `staffmsg` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `schedule`
+--
+
+CREATE TABLE `schedule` (
+  `id` int(8) NOT NULL,
+  `vehicle` varchar(255) NOT NULL,
+  `vehicleno` varchar(255) NOT NULL,
+  `capacity` varchar(255) NOT NULL,
+  `startpoint` varchar(255) NOT NULL,
+  `departure` time NOT NULL,
+  `route` varchar(255) NOT NULL,
+  `arrivaltime` time NOT NULL,
+  `status` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `schedule`
+--
+
+INSERT INTO `schedule` (`id`, `vehicle`, `vehicleno`, `capacity`, `startpoint`, `departure`, `route`, `arrivaltime`, `status`) VALUES
+(3, 'CW VAN', 'Z3B071', '11 PAX', 'CENTROPARK', '00:00:00', 'Main gate - Walter Mart - Vista Mall - ALAULI CROSSING - NAGWALING - DIWA ELE. SCHOOL - LIYANG DUNSULAN WAITING SHED - PANTINGAN COURT ', '00:30:00', 'DEPARTED'),
+(4, 'CW VAN', 'Z1N185', '14 PAX', 'CENTROPARK', '00:00:00', 'Main gate - PANTINGAN COURT - LIYANG DUNSULAN WAITING SHED - DIWA ELEM. SCHOOL - NAGWALING - ALAULI CROSSING - Vista Mall  - Walter Mart - HUB', '00:30:00', 'STANDBY'),
+(5, 'COASTER', 'Z3X358', '28 PAX', 'CENTROPARK', '00:00:00', 'Main gate - PANTINGAN COURT - LIYANG DUNSULAN WAITING SHED - DIWA ELEM. SCHOOL - NAGWALING - ALAULI CROSSING - Vista Mall  - Walter Mart - HUB', '00:30:00', 'DEPARTED'),
+(6, 'CW VAN', 'Z1N185', '14 PAX', 'HUB', '01:00:00', 'Walter Mart - Vista Mall - ALAULI CROSSING - NAGWALING - DIWA ELE. SCHOOL - LIYANG DUNSULAN WAITING SHED - PANTINGAN COURT  - MAIN GATE - CENTROPARK', '01:30:00', 'STANDBY'),
+(7, 'VAN 3', 'Z2J524', '14 PAX', 'CENTROPARK', '01:00:00', 'Main gate - PANTINGAN COURT - LIYANG DUNSULAN WAITING SHED - DIWA ELEM. SCHOOL - NAGWALING - ALAULI CROSSING - Vista Mall  - Walter Mart - HUB', '01:30:00', 'DEPARTED'),
+(8, 'VAN 1', 'Z2G799', '14 PAX', 'HUB', '02:00:00', 'Walter Mart - Vista Mall - ALAULI CROSSING - NAGWALING - DIWA ELE. SCHOOL - LIYANG DUNSULAN WAITING SHED - PANTINGAN COURT  - MAIN GATE - CENTROPARK', '02:30:00', 'STANDBY'),
+(9, 'VAN 3', 'Z2J524', '14 PAX', 'CENTROPARK', '02:00:00', 'Main gate - PANTINGAN COURT - LIYANG DUNSULAN WAITING SHED - DIWA ELEM. SCHOOL - NAGWALING - ALAULI CROSSING - Vista Mall  - Walter Mart - HUB', '02:30:00', 'DEPARTED'),
+(10, 'VAN 2', 'Z1W660', '14 PAX', 'HUB', '03:00:00', 'Walter Mart - Vista Mall - ALAULI CROSSING - NAGWALING - DIWA ELE. SCHOOL - LIYANG DUNSULAN WAITING SHED - PANTINGAN COURT  - MAIN GATE - CENTROPARK', '03:30:00', 'STANDBY'),
+(11, 'VAN 3', 'Z2J524', '14 PAX', 'CENTROPARK', '03:00:00', 'Main gate - PANTINGAN COURT - LIYANG DUNSULAN WAITING SHED - DIWA ELEM. SCHOOL - NAGWALING - ALAULI CROSSING - Vista Mall  - Walter Mart - HUB', '03:30:00', 'DEPARTED'),
+(12, 'WB VAN', 'Z3K830', '11 PAX', 'HUB', '04:00:00', 'Walter Mart - Vista Mall - ALAULI CROSSING - NAGWALING - DIWA ELE. SCHOOL - LIYANG DUNSULAN WAITING SHED - PANTINGAN COURT  - MAIN GATE - CENTROPARK', '04:30:00', 'STANDBY'),
+(13, 'VAN 3', 'Z2J524', '14 PAX', 'CENTROPARK', '04:00:00', 'Main gate - PANTINGAN COURT - LIYANG DUNSULAN WAITING SHED - DIWA ELEM. SCHOOL - NAGWALING - ALAULI CROSSING - Vista Mall  - Walter Mart - HUB', '04:30:00', 'DEPARTED'),
+(14, 'COASTER', 'Z3X358', '28 PAX', 'HUB', '05:00:00', 'Walter Mart - Vista Mall - ALAULI CROSSING - NAGWALING - DIWA ELE. SCHOOL - LIYANG DUNSULAN WAITING SHED - PANTINGAN COURT  - MAIN GATE - CENTROPARK', '05:30:00', 'STANDBY'),
+(15, 'CW VAN', 'Z1N185', '14 PAX', 'CENTROPARK', '05:00:00', 'Main gate - PANTINGAN COURT - LIYANG DUNSULAN WAITING SHED - DIWA ELEM. SCHOOL - NAGWALING - ALAULI CROSSING - Vista Mall  - Walter Mart - HUB', '05:30:00', 'DEPARTED'),
+(16, 'CW VAN', 'Z1N185', '14 PAX', 'HUB', '06:00:00', 'Walter Mart - Vista Mall - ALAULI CROSSING - NAGWALING - DIWA ELE. SCHOOL - LIYANG DUNSULAN WAITING SHED - PANTINGAN COURT  - MAIN GATE - CENTROPARK', '06:30:00', 'STANDBY'),
+(17, 'VAN 3', 'Z2J524', '14 PAX', 'CENTROPARK', '06:00:00', 'Main gate - PANTINGAN COURT - LIYANG DUNSULAN WAITING SHED - DIWA ELEM. SCHOOL - NAGWALING - ALAULI CROSSING - Vista Mall  - Walter Mart - HUB', '06:30:00', 'DEPARTED'),
+(18, 'NISSAN', 'F5P250', '16 PAX', 'HUB', '07:00:00', 'Walter Mart - Vista Mall - ALAULI CROSSING - NAGWALING - DIWA ELE. SCHOOL - LIYANG DUNSULAN WAITING SHED - PANTINGAN COURT  - MAIN GATE - CENTROPARK', '07:30:00', 'STANDBY'),
+(19, 'NISSAN', 'F5P250', '16 PAX', 'CENTROPARK', '07:00:00', 'Main gate - PANTINGAN COURT - LIYANG DUNSULAN WAITING SHED - DIWA ELEM. SCHOOL - NAGWALING - ALAULI CROSSING - Vista Mall  - Walter Mart - HUB', '07:30:00', 'DEPARTED'),
+(20, 'VAN 2', 'Z1W660', '14 PAX', 'HUB', '08:00:00', 'Walter Mart - Vista Mall - ALAULI CROSSING - NAGWALING - DIWA ELE. SCHOOL - LIYANG DUNSULAN WAITING SHED - PANTINGAN COURT  - MAIN GATE - CENTROPARK', '08:30:00', 'STANDBY'),
+(21, 'VAN 3', 'Z2J524', '14 PAX', 'CENTROPARK', '08:00:00', 'Main gate - PANTINGAN COURT - LIYANG DUNSULAN WAITING SHED - DIWA ELEM. SCHOOL - NAGWALING - ALAULI CROSSING - Vista Mall  - Walter Mart - HUB', '08:30:00', 'DEPARTED'),
+(22, 'VAN 3', 'Z2J524', '14 PAX', 'HUB', '09:00:00', 'Walter Mart - Vista Mall - ALAULI CROSSING - NAGWALING - DIWA ELE. SCHOOL - LIYANG DUNSULAN WAITING SHED - PANTINGAN COURT  - MAIN GATE - CENTROPARK', '09:30:00', 'STANDBY'),
+(23, 'VAN 3', 'Z2J524', '14 PAX', 'CENTROPARK', '09:00:00', 'Main gate - PANTINGAN COURT - LIYANG DUNSULAN WAITING SHED - DIWA ELEM. SCHOOL - NAGWALING - ALAULI CROSSING - Vista Mall  - Walter Mart - HUB', '09:30:00', 'DEPARTED'),
+(24, 'VAN 1', 'Z2G799', '14 PAX', 'HUB', '10:00:00', 'Walter Mart - Vista Mall - ALAULI CROSSING - NAGWALING - DIWA ELE. SCHOOL - LIYANG DUNSULAN WAITING SHED - PANTINGAN COURT  - MAIN GATE - CENTROPARK', '10:30:00', 'STANDBY'),
+(25, 'WB VAN', 'Z3K830', '11 PAX', 'CENTROPARK', '10:00:00', 'Main gate - PANTINGAN COURT - LIYANG DUNSULAN WAITING SHED - DIWA ELEM. SCHOOL - NAGWALING - ALAULI CROSSING - Vista Mall  - Walter Mart - HUB', '10:30:00', 'DEPARTED'),
+(26, 'VAN 2', 'Z1W660', '14 PAX', 'HUB', '11:00:00', 'Walter Mart - Vista Mall - ALAULI CROSSING - NAGWALING - DIWA ELE. SCHOOL - LIYANG DUNSULAN WAITING SHED - PANTINGAN COURT  - MAIN GATE - CENTROPARK', '11:30:00', 'STANDBY'),
+(27, 'WB VAN', 'Z3K830', '11 PAX', 'CENTROPARK', '11:00:00', 'Main gate - PANTINGAN COURT - LIYANG DUNSULAN WAITING SHED - DIWA ELEM. SCHOOL - NAGWALING - ALAULI CROSSING - Vista Mall  - Walter Mart - HUB', '11:30:00', 'DEPARTED'),
+(28, 'WB VAN', 'Z3K830', '11 PAX', 'HUB', '12:00:00', 'Walter Mart - Vista Mall - ALAULI CROSSING - NAGWALING - DIWA ELE. SCHOOL - LIYANG DUNSULAN WAITING SHED - PANTINGAN COURT  - MAIN GATE - CENTROPARK', '12:30:00', 'STANDBY'),
+(29, 'VAN 2', 'Z1W660', '14 PAX', 'CENTROPARK', '12:00:00', 'Main gate - PANTINGAN COURT - LIYANG DUNSULAN WAITING SHED - DIWA ELEM. SCHOOL - NAGWALING - ALAULI CROSSING - Vista Mall  - Walter Mart - HUB', '12:30:00', 'DEPARTED'),
+(30, 'COASTER', 'Z3X358', '28 PAX', 'HUB', '13:00:00', 'Walter Mart - Vista Mall - ALAULI CROSSING - NAGWALING - DIWA ELE. SCHOOL - LIYANG DUNSULAN WAITING SHED - PANTINGAN COURT  - MAIN GATE - CENTROPARK', '13:30:00', 'STANDBY'),
+(31, 'WB VAN', 'Z3K830', '11 PAX', 'CENTROPARK', '13:00:00', 'Main gate - PANTINGAN COURT - LIYANG DUNSULAN WAITING SHED - DIWA ELEM. SCHOOL - NAGWALING - ALAULI CROSSING - Vista Mall  - Walter Mart - HUB', '13:30:00', 'DEPARTED'),
+(32, 'WB VAN', 'Z3K830', '11 PAX', 'HUB', '14:00:00', 'Walter Mart - Vista Mall - ALAULI CROSSING - NAGWALING - DIWA ELE. SCHOOL - LIYANG DUNSULAN WAITING SHED - PANTINGAN COURT  - MAIN GATE - CENTROPARK', '14:30:00', 'STANDBY'),
+(33, 'VAN 2', 'Z1W660', '14 PAX', 'CENTROPARK', '14:00:00', 'Main gate - PANTINGAN COURT - LIYANG DUNSULAN WAITING SHED - DIWA ELEM. SCHOOL - NAGWALING - ALAULI CROSSING - Vista Mall  - Walter Mart - HUB', '14:30:00', 'DEPARTED'),
+(34, 'NISSAN', 'F5P250', '16 PAX', 'HUB', '15:00:00', 'Walter Mart - Vista Mall - ALAULI CROSSING - NAGWALING - DIWA ELE. SCHOOL - LIYANG DUNSULAN WAITING SHED - PANTINGAN COURT  - MAIN GATE - CENTROPARK', '15:30:00', 'STANDBY'),
+(35, 'VAN 2', 'Z1W660', '14 PAX', 'CENTROPARK', '15:00:00', 'Main gate - PANTINGAN COURT - LIYANG DUNSULAN WAITING SHED - DIWA ELEM. SCHOOL - NAGWALING - ALAULI CROSSING - Vista Mall  - Walter Mart - HUB', '15:30:00', 'DEPARTED'),
+(36, 'VAN 2', 'Z1W660', '14 PAX', 'HUB', '16:00:00', 'Walter Mart - Vista Mall - ALAULI CROSSING - NAGWALING - DIWA ELE. SCHOOL - LIYANG DUNSULAN WAITING SHED - PANTINGAN COURT  - MAIN GATE - CENTROPARK', '16:30:00', 'STANDBY'),
+(37, 'NISSAN', 'F5P250', '16 PAX', 'CENTROPARK', '16:00:00', 'Main gate - PANTINGAN COURT - LIYANG DUNSULAN WAITING SHED - DIWA ELEM. SCHOOL - NAGWALING - ALAULI CROSSING - Vista Mall  - Walter Mart - HUB', '16:30:00', 'DEPARTED'),
+(38, 'COASTER', 'Z3X358', '28 PAX', 'HUB', '17:00:00', 'Walter Mart - Vista Mall - ALAULI CROSSING - NAGWALING - DIWA ELE. SCHOOL - LIYANG DUNSULAN WAITING SHED - PANTINGAN COURT  - MAIN GATE - CENTROPARK', '17:30:00', 'STANDBY'),
+(39, 'VAN 3', 'Z2J524', '14 PAX', 'CENTROPARK', '17:00:00', 'Main gate - PANTINGAN COURT - LIYANG DUNSULAN WAITING SHED - DIWA ELEM. SCHOOL - NAGWALING - ALAULI CROSSING - Vista Mall  - Walter Mart - HUB', '17:30:00', 'DEPARTED'),
+(40, 'VAN 1', 'Z2G799', '14 PAX', 'HUB', '18:00:00', 'Walter Mart - Vista Mall - ALAULI CROSSING - NAGWALING - DIWA ELE. SCHOOL - LIYANG DUNSULAN WAITING SHED - PANTINGAN COURT  - MAIN GATE - CENTROPARK', '18:30:00', 'STANDBY'),
+(41, 'VAN 2', 'Z1W660', '14 PAX', 'CENTROPARK', '18:00:00', 'Main gate - PANTINGAN COURT - LIYANG DUNSULAN WAITING SHED - DIWA ELEM. SCHOOL - NAGWALING - ALAULI CROSSING - Vista Mall  - Walter Mart - HUB', '18:30:00', 'DEPARTED'),
+(42, 'VAN 2', 'Z1W660', '14 PAX', 'HUB', '19:00:00', 'Walter Mart - Vista Mall - ALAULI CROSSING - NAGWALING - DIWA ELE. SCHOOL - LIYANG DUNSULAN WAITING SHED - PANTINGAN COURT  - MAIN GATE - CENTROPARK', '19:30:00', 'STANDBY'),
+(43, 'VAN 1', 'Z2G799', '14 PAX', 'CENTROPARK', '19:00:00', 'Main gate - PANTINGAN COURT - LIYANG DUNSULAN WAITING SHED - DIWA ELEM. SCHOOL - NAGWALING - ALAULI CROSSING - Vista Mall  - Walter Mart - HUB', '19:30:00', 'DEPARTED'),
+(44, 'WB VAN', 'Z3K830', '11 PAX', 'HUB', '20:00:00', 'Walter Mart - Vista Mall - ALAULI CROSSING - NAGWALING - DIWA ELE. SCHOOL - LIYANG DUNSULAN WAITING SHED - PANTINGAN COURT  - MAIN GATE - CENTROPARK', '20:30:00', 'STANDBY'),
+(45, 'VAN 3', 'Z2J524', '14 PAX', 'CENTROPARK', '20:00:00', 'Main gate - PANTINGAN COURT - LIYANG DUNSULAN WAITING SHED - DIWA ELEM. SCHOOL - NAGWALING - ALAULI CROSSING - Vista Mall  - Walter Mart - HUB', '20:30:00', 'DEPARTED'),
+(46, 'COASTER', 'Z3X358', '28 PAX', 'HUB', '21:00:00', 'Walter Mart - Vista Mall - ALAULI CROSSING - NAGWALING - DIWA ELE. SCHOOL - LIYANG DUNSULAN WAITING SHED - PANTINGAN COURT  - MAIN GATE - CENTROPARK', '21:30:00', 'STANDBY'),
+(47, 'VAN 2', 'Z1W660', '14 PAX', 'CENTROPARK', '21:00:00', 'Main gate - PANTINGAN COURT - LIYANG DUNSULAN WAITING SHED - DIWA ELEM. SCHOOL - NAGWALING - ALAULI CROSSING - Vista Mall  - Walter Mart - HUB', '21:30:00', 'DEPARTED'),
+(48, 'VAN 3', 'Z2J524', '14 PAX', 'HUB', '22:00:00', 'Walter Mart - Vista Mall - ALAULI CROSSING - NAGWALING - DIWA ELE. SCHOOL - LIYANG DUNSULAN WAITING SHED - PANTINGAN COURT  - MAIN GATE - CENTROPARK', '22:30:00', 'STANDBY'),
+(49, 'NISSAN', 'F5P250', '16 PAX', 'CENTROPARK', '22:00:00', 'Main gate - PANTINGAN COURT - LIYANG DUNSULAN WAITING SHED - DIWA ELEM. SCHOOL - NAGWALING - ALAULI CROSSING - Vista Mall  - Walter Mart - HUB', '22:30:00', 'DEPARTED'),
+(50, 'NISSAN', 'F5P250', '16 PAX', 'HUB', '23:00:00', 'Walter Mart - Vista Mall - ALAULI CROSSING - NAGWALING - DIWA ELE. SCHOOL - LIYANG DUNSULAN WAITING SHED - PANTINGAN COURT  - MAIN GATE - CENTROPARK', '23:30:00', 'STANDBY'),
+(51, 'VAN 3', 'Z2J524', '14 PAX', 'CENTROPARK', '23:00:00', 'Main gate - PANTINGAN COURT - LIYANG DUNSULAN WAITING SHED - DIWA ELEM. SCHOOL - NAGWALING - ALAULI CROSSING - Vista Mall  - Walter Mart - HUB', '23:30:00', 'DEPARTED');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `airlines`
+--
+ALTER TABLE `airlines`
+  ADD PRIMARY KEY (`airlinecode`);
+
+--
+-- Indexes for table `airports`
+--
+ALTER TABLE `airports`
+  ADD PRIMARY KEY (`airportcode`);
+
+--
+-- Indexes for table `arrivals`
+--
+ALTER TABLE `arrivals`
+  ADD PRIMARY KEY (`airlinecode`,`flightno`,`arrives`);
+
+--
+-- Indexes for table `departures`
+--
+ALTER TABLE `departures`
+  ADD PRIMARY KEY (`airlinecode`,`flightno`,`departs`);
+
+--
+-- Indexes for table `schedule`
+--
+ALTER TABLE `schedule`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `schedule`
+--
+ALTER TABLE `schedule`
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
